@@ -1,0 +1,42 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "### Author: Jonny Graybill",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "test-watch": "jest --watchAll",
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "dotenv": "^6.2.0",
+    "express": "^4.17.1",
+    "jest": "^23.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb-memory-server": "^5.1.9",
+    "mongoose": "^5.6.7",
+    "mongoose-schema-jsonschema": "^1.2.1",
+    "morgan": "^1.9.1",
+    "require-directory": "^2.1.1",
+    "supertest": "^3.4.2",
+    "swagger-ui-express": "^4.0.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/401-advanced-javascript-jonnygraybill/auth-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/401-advanced-javascript-jonnygraybill/auth-server/issues"
+  },
+  "homepage": "https://github.com/401-advanced-javascript-jonnygraybill/auth-server#readme"
+}
