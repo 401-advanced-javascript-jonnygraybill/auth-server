@@ -4,6 +4,7 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+// const expressJwt = require('express-jwt');
 
 // Esoteric Resources
 const errorHandler = require( './middleware/500.js');
@@ -19,6 +20,11 @@ app.use(morgan('dev'));
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
+// app.use('/api', expressJwt({
+//   secret: secretCallback,
+//   isRevoked: isRevokedCallback
+// }));
 
 // Routes
 app.use(authRouter);

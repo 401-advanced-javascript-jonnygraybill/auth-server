@@ -1,15 +1,41 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
+const faker = require('faker');
+// const f = new Faker();
+// let str = f.Random.Chars(size);
+const fakeShit = Math.random(+ 15).toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+console.log(fakeShit);
+
+function makeid(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+console.log(makeid(5));
+
 
 const users = new mongoose.Schema({
   username: {type:String, required:true, unique:true},
   password: {type:String, required:true},
   email: {type: String},
   role: {type: String, default:'user', enum: ['admin','editor','user']},
+  jti: {type:String, required:true, default:fakeShit}
 });
+
+// const blacklist = new mongoose.Schema({
+//   jti: {type:String},
+// })
+
+
 
 users.pre('save', function(next) {
   bcrypt.hash(this.password, 10)
@@ -27,25 +53,6 @@ users.statics.authenticateToken = function(token) {
   return this.findOne(query);
 }
 
-// users.statics.createFromOauth = function(email) {
-
-//   if(! email) { return Promise.reject('Validation Error'); }
-
-//   return this.findOne( {email} )
-//     .then(user => {
-//       if( !user ) { throw new Error('User Not Found'); }
-//       console.log('Welcome Back', user.username);
-//       return user;
-//     })
-//     .catch( error => {
-//       console.log('Creating new user');
-//       let username = email;
-//       let password = 'none';
-//       return this.create({username, password, email});
-//     });
-
-// };
-
 users.statics.authenticateBasic = function(auth) {
   let query = {username:auth.username};
   return this.findOne(query)
@@ -59,13 +66,34 @@ users.methods.comparePassword = function(password) {
 };
 
 users.methods.generateToken = function() {
-  
   let token = {
     id: this._id,
     role: this.role,
   };
-  
-  return jwt.sign(token, process.env.SECRET);
+  return jwt.sign(token, process.env.SECRET, {expiresIn: "15m"});
 };
 
+// let payload = {
+//   id: this._id
+// };
+
+// let secret = process.env.SECRET;
+
+// let singleToken = jwt2.encode(payload, secret);
+// console.log(`🥶 ${singleToken}`);
+
+// let decode = jwt2.decode(singleToken, secret);
+// console.log(decode);
+
+
+users.methods.generateSingleToken = function() {
+  let payload = {
+    id: this._id,
+    role: this.role,
+    jti: crypto.randomBytes(20).toString('hex')
+  };
+  return jwt.sign(payload, process.env.SECRET, {expiresIn: "15m"});
+}
+
 module.exports = mongoose.model('users', users);
+// module.exports = mongoose.model('blacklist', blacklist);
