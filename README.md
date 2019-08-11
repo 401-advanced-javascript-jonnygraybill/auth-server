@@ -3,9 +3,9 @@
 ### Author: Jonny Graybill and Adriana Graybill
 
 ### Links and Resources
-* [submission PR](https://github.com/401-advanced-javascript-jonnygraybill/lab-13/pull/1) 
+* [submission PR](https://github.com/401-advanced-javascript-jonnygraybill/auth-server/pull/1) 
 
-* [travis]([![Build Status](https://www.travis-ci.com/401-advanced-javascript-jonnygraybill/lab-11.svg?branch=auth)](https://www.travis-ci.com/401-advanced-javascript-jonnygraybill/lab-11))
+* [travis]([![Build Status](https://www.travis-ci.com/401-advanced-javascript-jonnygraybill/auth-server.svg?branch=master)](https://www.travis-ci.com/401-advanced-javascript-jonnygraybill/auth-server))
 
 ### Heroku
 * [App](https://jgray-401-auth-server.herokuapp.com/)
