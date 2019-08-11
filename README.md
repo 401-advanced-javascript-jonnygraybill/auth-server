@@ -8,7 +8,7 @@
 * [travis]([![Build Status](https://www.travis-ci.com/401-advanced-javascript-jonnygraybill/auth-server.svg?branch=master)](https://www.travis-ci.com/401-advanced-javascript-jonnygraybill/auth-server))
 
 ### Heroku
-* [App](https://jgray-401-auth-server.herokuapp.com/)
+* [App](https://gray-401-auth-server.herokuapp.com/)
 
 ### Setup
 #### `.env` requirements
