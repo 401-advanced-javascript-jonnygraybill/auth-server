@@ -1,6 +1,6 @@
-# LAB - 13
+# LAB - 11, 13, & 14
 
-### Author: Jonny Graybill
+### Author: Jonny Graybill and Adriana Graybill
 
 ### Links and Resources
 * [submission PR](https://github.com/401-advanced-javascript-jonnygraybill/lab-13/pull/1) 
@@ -8,33 +8,27 @@
 * [travis]([![Build Status](https://www.travis-ci.com/401-advanced-javascript-jonnygraybill/lab-11.svg?branch=auth)](https://www.travis-ci.com/401-advanced-javascript-jonnygraybill/lab-11))
 
 ### Heroku
-* [App](https://jgray-401-lab11.herokuapp.com/)
-
-
-#### Documentation
-* [api docs](http://xyz.com) (API servers)
-* [jsdoc](http://xyz.com) (Server assignments)
-* [styleguide](http://xyz.com) (React assignments)
-
-### Modules
-#### `modulename.js`
-##### Exported Values and Methods
-
+* [App](https://jgray-401-auth-server.herokuapp.com/)
 
 ### Setup
 #### `.env` requirements
-* `PORT` - Port Number
-* `MONGODB_URI` - URL to the running mongo instance/db
+* `PORT` - 3000
+* `MONGODB_URI` - mongodb://localhost:27017/auth-server
 
 #### Running the app
 * `npm start`
-* Endpoint: `/api/v1/categories/`
-  * Returns a JSON object.
-* Endpoint: `/api/v1/products/`
-  * Returns a JSON object.
-  
+* Endpoint: `/3000/public-stuff` - anyone can access
+* Endpoint: `/3000/hidden-stuff` - can access with a valid login
+* Endpoint: `/3000/something-to-read` - can access with "read" permissions
+* Endpoint: `/3000/create-a-thing` - can access with "create"permissions
+* Endpoint: `/3000/update` - can access with "update" permissions
+* Endpoint: `/3000/jp` - can access with "update" permissions
+* Endpoint: `/3000/bye-bye` - can access with "delete" permissions
+* Endpoint: `/3000/everything` - can access with all permissions
+
 #### Tests
 * npm test
 
 ### UML
-![UML](./assets/lab-11-uml.jpg)
+![UML](./assets/lab-13-uml.jpg)
+![UML](./assets/lab-14-uml.jpg)

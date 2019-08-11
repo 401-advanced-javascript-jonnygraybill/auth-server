@@ -2,7 +2,8 @@
 
 const User = require('./users-model.js');
 
-module.exports = (req, res, next) => {
+module.exports = (capability) => {
+  return (req,res,next) => {
   
   try {
     let [authType, authString] = req.headers.authorization.split(/\s+/);
@@ -14,7 +15,7 @@ module.exports = (req, res, next) => {
         return _authBearer(authString);
       case 'single':
         return _authBasicSingle(authString);
-      default: 
+      default:
         return _authError();
     }
   }
@@ -24,7 +25,10 @@ module.exports = (req, res, next) => {
   
   function _authBearer(authString) {
     return User.authenticateToken(authString)
-      .then( user => _authenticate(user))
+      .then( user => {
+        console.log(`🏪 ${user}`);
+        return _authenticate(user)
+      })
       .catch(next);
   }
 
@@ -51,7 +55,7 @@ module.exports = (req, res, next) => {
   }
 
   function _authenticate(user) {
-    if(user) {
+    if(user && (!capability || user.can(capability))) {
       req.user = user;
       req.token = user.generateToken();
       req.payload = user.generateSingleToken();
@@ -65,5 +69,5 @@ module.exports = (req, res, next) => {
   function _authError() {
     next('Invalid User ID/Password');
   }
-  
+}
 };
