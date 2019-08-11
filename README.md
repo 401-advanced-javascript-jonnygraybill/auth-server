@@ -30,5 +30,8 @@
 * npm test
 
 ### UML
+* Lab 13
 ![UML](./assets/lab-13-uml.jpg)
+
+* Lab 14
 ![UML](./assets/lab-14-uml.jpg)
